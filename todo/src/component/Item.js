@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+
 
 import '../style/index.css';
 
@@ -21,15 +23,17 @@ export default function Item(props) {
 			<IconButton onClick={props.deleteItem} aria-label="delete" className={classes.margin}>
 				<DeleteIcon fontSize="large" />
 			</IconButton>
-			<button onClick={props.editPost}>Edit</button>
+			<Button variant="contained" color="primary" onClick={props.editPost}>Edit</Button>
 			<CardContent>
-				<Typography className="title" color="textSecondary" gutterBottom contentEditable="false">
+				<Typography className="title" color="textSecondary" gutterBottom >
+				{/* contentEditable="false" */}
 					Title
 				</Typography>
 				<Typography variant="h5" component="h2">
 					{props.Title}
 				</Typography>
-				<Typography className="pos" color="textSecondary" contentEditable="false">
+				<Typography className="pos" color="textSecondary" >
+				{/* contentEditable="false" */}
 					Completed
 				</Typography>
 				<Typography variant="body2" component="p">

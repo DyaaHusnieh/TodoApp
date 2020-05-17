@@ -54,24 +54,16 @@ const CreateItem = (props) => {
 					<Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
 				</ExpansionPanelSummary>
 				<ExpansionPanelDetails className="addItem">
-					<Typography>
-						<div>
-							<TextField
-								id="title"
-								label="Title"
-								type="text"
-								onChange={(e) => setTitle(e.target.value)}
-							/>
-							<br />
-							<TextField id="body" label="Body" type="text" onChange={(e) => setBody(e.target.value)} />
-							<br />
-							<br />
-
-							<Button variant="contained" color="primary" onClick={handleAddItem}>
-								Add
-							</Button>
-						</div>
-					</Typography>
+					<div>
+						<TextField id="title" label="Title" type="text" onChange={(e) => setTitle(e.target.value)} />
+						<br/>
+						<TextField id="body" label="Body" type="text" onChange={(e) => setBody(e.target.value)} />
+						<br/>
+						<br/>
+						<Button variant="contained" color="primary" onClick={handleAddItem}>
+							Add
+						</Button>
+					</div>
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
 		</div>

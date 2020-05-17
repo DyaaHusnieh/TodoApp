@@ -25,7 +25,7 @@ function Login(props) {
 				}
 			});
 		}
-	}, [props.result]);
+	}, [props.result, userName, password, history]);
 
 	return (
 		<div>
