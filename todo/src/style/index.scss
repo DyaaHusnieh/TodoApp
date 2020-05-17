@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+
+.items{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  background-color: lightblue;
+  .Cards{
+    width: 200px;
+    margin: 10px;
+   
+  }
+}
+
+.addItem{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
