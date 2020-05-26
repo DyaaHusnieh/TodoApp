@@ -60,7 +60,7 @@ const CreateItem = (props) => {
 						<TextField id="body" label="Body" type="text" onChange={(e) => setBody(e.target.value)} />
 						<br/>
 						<br/>
-						<Button variant="contained" color="primary" onClick={handleAddItem}>
+						<Button variant="contained" color="primary" data-testid="Add-Button" onClick={handleAddItem}>
 							Add
 						</Button>
 					</div>

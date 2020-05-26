@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { REQUEST_API_LOGIN, FETCH_USER_SUCCESS, FETCH_USER_FAIL } from './Action';
-const initialState = {
+export const initialState = {
 	request: false,
 	users: [],
 };

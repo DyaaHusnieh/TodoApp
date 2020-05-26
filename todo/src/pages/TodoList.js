@@ -5,32 +5,33 @@ import Item from '../component/Item';
 import { useHistory } from 'react-router-dom';
 import CreateItem from '../component/CreateItem';
 import { Button } from '@material-ui/core';
-import "../style/index.css";
+import '../style/index.css';
 
 const TodoList = (props) => {
 	let history = useHistory();
 	let editable = false;
 	const [Cards, setCards] = useState('');
+
 	useEffect(() => {
 		let id = localStorage.getItem('userid');
-		// console.log("local storeage todod list ", localStorage.getItem('userid'));
 		
+		const res = id === props.match.params.userid;
+		if (!res) {
+			history.replace('/');
+		}
+
 		if (id) {
 			props.onRequestApiData();
 		} else {
 			history.replace('/');
 		}
-	},[] );
+	}, []);
 
 	useEffect(() => {
 		let List;
 
 		if (props.todoList.length > 1) {
-			// console.log('local', localStorage.getItem('userid'));
 			List = props.todoList.filter((element) => {
-				// console.log(typeof element.userId)
-				// console.log(typeof localStorage.getItem('userid'))
-
 				return element.userId + '' === localStorage.getItem('userid');
 			});
 
@@ -42,7 +43,10 @@ const TodoList = (props) => {
 						key={index}
 						deleteItem={() => handelDeleteItem(item.id)}
 						editPost={() => handelEditPost(item.userId, item.id, index)}
-						id={item.id}
+						id={'todoList-' + item.id}
+						test = {'todoList-' + item.id}
+						testTitle = {'post-title-' + item.id}
+						testBody = {'post-body-' + item.id}
 					/>
 				);
 			});
@@ -55,42 +59,47 @@ const TodoList = (props) => {
 	};
 
 	const handelEditPost = (userid, id, index) => {
-		if (editable === true) {
-			document.getElementById(`${id}`).contentEditable = false;
-			editable = false;
-			document.getElementById(`${id}`).style.color = 'black';
-			const val = document.getElementById(`${id}`).children;
-			const myelements = val[2].children;
-			const title = myelements[1].innerHTML;
-			const body = myelements[3].innerHTML;
+		let doc = document.getElementById(`todoList-${id}`).getElementsByClassName('toEdit');
+		doc[0].contentEditable = false;
+		doc[1].contentEditable = false;
 
-			// console.log("myelements[1]" , myelements[1].innerHTML)
-			// console.log("myelements[1]" , myelements[3].innerHTML)
+		if (editable === true) {
+			editable = false;
+			doc[0].style.color = 'black';
+			doc[1].style.color = 'black';
+			const val = doc;
+			const title = val[0].innerHTML;
+			const body = val[1].innerHTML;
 
 			props.onEditPost(userid, id, title, body, index);
 		} else {
-			
-			document.getElementById(`${id}`).contentEditable = true;
-			document.getElementById(`${id}`).style.color = 'red';
+			doc[0].contentEditable = true;
+			doc[1].contentEditable = true;
+			doc[0].style.color = 'red';
+			doc[1].style.color = 'red';
+
 			editable = true;
 		}
 	};
 
-	const handelLogout = () =>{
+	const handelLogout = () => {
 		localStorage.clear();
 		history.push('/');
-	}
+	};
 	return (
 		<div>
-			{/* <h1>Todo List {console.log("params" , props.match.params)} </h1> */}
-			<Button className='logout' variant="contained" color="secondary" onClick={handelLogout}>
+			<Button
+				className="logout"
+				variant="contained"
+				color="secondary"
+				onClick={handelLogout}
+				data-testid="logout"
+			>
 				Logout
 			</Button>
 			<CreateItem/>
-		
-			<div className="items">{Cards}
-			</div>
-			
+
+			<div data-testid="Cards" className="items">{Cards}</div>
 		</div>
 	);
 };

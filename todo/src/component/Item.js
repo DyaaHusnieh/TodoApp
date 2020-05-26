@@ -19,24 +19,22 @@ export default function Item(props) {
 	const classes = useStyles();
 
 	return (
-		<Card id={props.id} className="Cards" variant="outlined">
+		<Card id={props.id} className="Cards" variant="outlined" data-testid = {props.test}>
 			<IconButton onClick={props.deleteItem} aria-label="delete" className={classes.margin}>
 				<DeleteIcon fontSize="large" />
 			</IconButton>
-			<Button variant="contained" color="primary" onClick={props.editPost}>Edit</Button>
+			<Button onClick={props.editPost}>Edit</Button>
 			<CardContent>
-				<Typography className="title" color="textSecondary" gutterBottom >
-				{/* contentEditable="false" */}
+				<Typography  name="title" color="textSecondary" gutterBottom >
 					Title
 				</Typography>
-				<Typography variant="h5" component="h2">
+				<Typography variant="h5" data-testid= {props.testTitle}  component="h2" className="toEdit">
 					{props.Title}
 				</Typography>
 				<Typography className="pos" color="textSecondary" >
-				{/* contentEditable="false" */}
 					Completed
 				</Typography>
-				<Typography variant="body2" component="p">
+				<Typography variant="body2" data-testid= {props.testBody} component="p" label='post-body' className="toEdit">
 					{props.completed}
 				</Typography>
 			</CardContent>

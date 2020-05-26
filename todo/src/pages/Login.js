@@ -20,7 +20,6 @@ function Login(props) {
 			props.result.forEach((element) => {
 				if (element.username === userName && element.username === password) {
 					localStorage.setItem('userid', element.id);
-
 					history.push(`/todolist/${element.id}`);
 				}
 			});
@@ -29,18 +28,20 @@ function Login(props) {
 
 	return (
 		<div>
-			<h2>Login page</h2>
+			<h2 id="loginText">Login page</h2>
 			<TextField
 				id="user"
 				label="Username"
+				data-testid="Username"
 				type="text"
-				autoComplete="current-password"
+				autoComplete="current-Username"
 				onChange={(e) => setUserName(e.target.value)}
 			/>
 			<br />
 			<TextField
 				id="password"
 				label="Password"
+				data-testid="Password"
 				type="password"
 				autoComplete="current-password"
 				onChange={(e) => setPassword(e.target.value)}
@@ -48,7 +49,7 @@ function Login(props) {
 			<br />
 			<br />
 
-			<Button variant="contained" color="primary" onClick={handleSubmit}>
+			<Button variant="contained" color="primary" onClick={handleSubmit} data-testid="submit">
 				Login
 			</Button>
 		</div>

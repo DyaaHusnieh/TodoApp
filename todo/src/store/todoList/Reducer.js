@@ -7,7 +7,7 @@ import {
 	EDIT_POST,
 	ADD_ITEM,
 } from './Action';
-const initialState = {
+export const initialState = {
 	request: false,
 	todoList: [],
 };
@@ -26,8 +26,6 @@ const Reducer = createReducer(initialState, {
 		todoList: action.payload,
 	}),
 	[DELETE_ITEM]: (state, action) => {
-		console.log('action.resultId' + action.resultId);
-
 		const updatedArray = state.todoList.filter((result) => result.id !== action.resultId);
 		return {
 			...state,
@@ -54,7 +52,6 @@ const Reducer = createReducer(initialState, {
 		};
 	},
 	[ADD_ITEM]: (state, action) => {
-		// console.log("newTitle" , action.newTitle , "newBody ",action.newBody, "newUserId", action.newUserId , "state.todoList.length",  state.todoList.length);
 		const userID = parseInt(action.newUserId);
 		const newElement = {
 			userId: userID,
